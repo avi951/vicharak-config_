@@ -1,0 +1,17 @@
+[Unit]
+Description=Vicharak Config Configure Wi-Fi Hotspot Service
+Documentation=https://github.com/vicharak-in/vicharak-config/
+After=network-online.target NetworkManager.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStartPre=/bin/sleep 5
+ExecStart=/bin/bash /usr/lib/vicharak-config/tui/comm/configure_hotspot.sh %i start
+ExecStop=/bin/bash /usr/lib/vicharak-config/tui/comm/configure_hotspot.sh %i stop
+StandardOutput=journal
+StandardError=journal
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+[Install]
+WantedBy=multi-user.target

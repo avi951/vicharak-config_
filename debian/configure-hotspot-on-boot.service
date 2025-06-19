@@ -1,0 +1,12 @@
+[Unit]
+Description=Run Auto Hotspot Service
+After=network.target
+
+[Service]
+ExecStart=/bin/bash /usr/lib/vicharak-config/tui/comm/hotspot/on_boot_hotspot.sh
+Type=oneshot
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
