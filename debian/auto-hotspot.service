@@ -1,0 +1,12 @@
+[Unit]
+Description=Auto Hotspot if no Ethernet or Wi-Fi IP
+After=network.target NetworkManager.service
+Requires=NetworkManager.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /usr/lib/vicharak-config/tui/comm/hotspot/on_boot_hotspot.sh
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

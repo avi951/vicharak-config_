@@ -26,11 +26,11 @@ __configure_hotspot_recovery_key() {
 
 __configure_hotspot_on_boot() {
 	# Check if USB tethering service is active
-	
+
 	msgbox "This Feature allows Board to turn on hotspot automatically as it does not get any network provider thorugh WiFi or Ethernet. Default Configuration on first time boot hostpot is : \nSSID : Axon-HP\nPASSWORD : 12345678\nIPv4: 10.9.8.7\n"
-	if systemctl is-active --quiet configure-hotspot-on-boot.service; then
+	if systemctl is-active --quiet auto-hotspot.service; then
 		if yesno "Hotspot will turn on with default SSID Axon-HP and Password 12345678 on boot. Do you want to disable it?"; then
-			if systemctl disable --now configure-hotspot-on-boot.service; then
+			if systemctl disable --now auto-hotspot.service; then
 				msgbox "Turn on Hotspot on each boot successfully disabled!"
 			else
 				msgbox "Failed to disable hotspot on each boot functionality."
@@ -38,7 +38,7 @@ __configure_hotspot_on_boot() {
 		fi
 	else
 		if yesno "Hotspot will not be used on each boot is currently disabled. Do you want to enable it?"; then
-			if systemctl enable --now configure-hotspot-on-boot.service; then
+			if systemctl enable --now auto-hotspot.service; then
 				msgbox "Turn on Hotspot on each boot successfully enabled!"
 			else
 				msgbox "Failed to Configure Hotspot on boot functionality"
